@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+import message_filters
+import rospy
+from std_msgs.msg import String
+
+def callback(data):
+    print(data.data)
+
+def listening():
+    rospy.init_node('mynode2')
+    rospy.Subscriber("/hello", String, callback)
+    rospy.Subscriber("/world", String, callback)
+    rospy.spin()
+
+if __name__ == '__main__':
+    listening()

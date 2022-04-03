@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+import rospy
+from std_msgs.msg import String
+
+def node2():
+    message_pub = rospy.Publisher("/world", String, queue_size=10)
+    rospy.init_node('node2')
+    mymessage = String()
+    mymessage.data ="World"
+    rate = rospy.Rate(10)
+
+    while not rospy.is_shutdown():
+        message_pub.publish(mymessage)
+        rate.sleep()
+
+if __name__ == '__main__':
+    try:
+        node2()
+    except rospy.ROSInterruptException:
+        pass
